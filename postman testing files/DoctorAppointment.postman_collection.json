@@ -1,0 +1,603 @@
+{
+	"id": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+	"name": "DoctorAppointment",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"name": "Doctor Service",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"order": [
+				"99897044-3817-dc0c-b7df-f881e95944ba",
+				"112daa53-d3b5-6b5e-0504-c02cbabaf5ef",
+				"78be54e7-b8a2-290f-06f5-895d05eb4dd6",
+				"4992a14b-3820-8414-2e0a-c70f40342a26"
+			],
+			"owner": "7282760",
+			"folders_order": [],
+			"id": "f109f5c1-dfa2-738e-d305-ec0c8d73c651"
+		},
+		{
+			"name": "Medical Appointment",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"order": [
+				"cbb1ec27-9a38-3f78-d72d-4f529bc64cca",
+				"09cc698d-5dde-1735-7fbd-320d58bdd16c",
+				"7a98584a-9c1a-59da-2d97-8bc702f734bb",
+				"5442f0c8-8eb3-08a9-0674-f687fa8c0f5e",
+				"382838dc-3b0b-c0bd-0fac-8ecb237738b5",
+				"80d2c642-354e-9dda-ed7f-c31f24a68ef0"
+			],
+			"owner": "7282760",
+			"folders_order": [],
+			"id": "6eda165f-4bca-96e9-c8e6-91fe763ebf61"
+		},
+		{
+			"name": "Patient Service",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"order": [
+				"3162172d-d231-77f6-8571-c45b1cd86242",
+				"5928995a-fb0e-46dd-282d-630a8774bf2c",
+				"dc2694b5-145d-626d-b940-3052f0c73a3d",
+				"25e96990-14b2-97eb-17d4-0058938f50ad"
+			],
+			"owner": "7282760",
+			"folders_order": [],
+			"id": "21d15a35-d18c-299e-447c-5021be86170d"
+		},
+		{
+			"name": "Reservation Service",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"order": [
+				"306b1736-6c57-45f0-16e8-9d2af9a29385",
+				"668b3441-0e8a-609e-3a90-b27a42bfd854",
+				"b1cedfcd-2ab2-9c94-5c64-c9265c2050be"
+			],
+			"owner": "7282760",
+			"folders_order": [],
+			"id": "289936f3-e12e-9bd5-438d-77ac1e210acf"
+		}
+	],
+	"folders_order": [
+		"21d15a35-d18c-299e-447c-5021be86170d",
+		"289936f3-e12e-9bd5-438d-77ac1e210acf",
+		"f109f5c1-dfa2-738e-d305-ec0c8d73c651",
+		"6eda165f-4bca-96e9-c8e6-91fe763ebf61"
+	],
+	"timestamp": 1563439201437,
+	"owner": "7282760",
+	"public": false,
+	"requests": [
+		{
+			"id": "09cc698d-5dde-1735-7fbd-320d58bdd16c",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Appointment Service}}/79FANOH9HGGsPROSQsRZ",
+			"folder": "6eda165f-4bca-96e9-c8e6-91fe763ebf61",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563830529073,
+			"name": "Medical Appointment",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "112daa53-d3b5-6b5e-0504-c02cbabaf5ef",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Doctor Service}}/1DI5mXlvNecUCtXdIvFR",
+			"folder": "f109f5c1-dfa2-738e-d305-ec0c8d73c651",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563762164300,
+			"name": "doctor",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "25e96990-14b2-97eb-17d4-0058938f50ad",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Patient service}}/rfpR4IYd6e0hiCWX7wKq",
+			"folder": "21d15a35-d18c-299e-447c-5021be86170d",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563825097122,
+			"name": "Patient",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "306b1736-6c57-45f0-16e8-9d2af9a29385",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{Basic API URL}}{{Basic Reservation Service}}",
+			"folder": "289936f3-e12e-9bd5-438d-77ac1e210acf",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563868600147,
+			"name": "Reservation",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": [],
+			"rawModeData": "{\"patientDto\": {\"patientId\": \"qKZHFOkhUU8MdlnzQvSy\"}, \"medicalAppointmentDto\": {\"medicalAppointmentId\": \"4GJxEIN147dZhHbvR8t5\"}}"
+		},
+		{
+			"id": "3162172d-d231-77f6-8571-c45b1cd86242",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{Basic API URL}}{{Basic Patient service}}",
+			"folder": "21d15a35-d18c-299e-447c-5021be86170d",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563825098527,
+			"name": "Patient",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": [],
+			"rawModeData": "{\"name\": \"karim.mos\", \"email\": \"karim@gmail.com\", \"phone\": \"01271615995\",\"username\" :\"karim.mostafa\"}"
+		},
+		{
+			"id": "382838dc-3b0b-c0bd-0fac-8ecb237738b5",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{Basic API URL}}{{Basic Appointment Service}}",
+			"folder": "6eda165f-4bca-96e9-c8e6-91fe763ebf61",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563831640691,
+			"name": "Medical Appointment",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": [],
+			"rawModeData": "{\"medicalAppointmentId\":\"4GJxEIN147dZhHbvR8t5\",\"doctorDto\": {\"doctorId\" : \"1DI5mXlvNecUCtXdIvFR\"}, \"day\" :\"2018-03-29\", \"from\" : \"06:34\", \"to\": \"10:34\" ,\"maxPatientCapacity\": 2}"
+		},
+		{
+			"id": "4992a14b-3820-8414-2e0a-c70f40342a26",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Doctor Service}}/Ovjd91VsiPVOJOZowtaT",
+			"folder": "f109f5c1-dfa2-738e-d305-ec0c8d73c651",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563761174942,
+			"name": "Doctor",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "5442f0c8-8eb3-08a9-0674-f687fa8c0f5e",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Appointment Service}}/availableMedicalAppointment/1DI5mXlvNecUCtXdIvFR",
+			"folder": "6eda165f-4bca-96e9-c8e6-91fe763ebf61",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563831278704,
+			"name": "availableMedicalAppointment of Doctor",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "5928995a-fb0e-46dd-282d-630a8774bf2c",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Patient service}}/rfpR4IYd6e0hiCWX7wKq",
+			"folder": "21d15a35-d18c-299e-447c-5021be86170d",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563824806254,
+			"name": "Patient",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "668b3441-0e8a-609e-3a90-b27a42bfd854",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Reservation Service}}/rfpR4IYd6e0hiCWX7wKq",
+			"folder": "289936f3-e12e-9bd5-438d-77ac1e210acf",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563832195343,
+			"name": "Reservation",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "78be54e7-b8a2-290f-06f5-895d05eb4dd6",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{Basic API URL}}{{Basic Doctor Service}}",
+			"folder": "f109f5c1-dfa2-738e-d305-ec0c8d73c651",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563874012729,
+			"name": "Doctor",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": [],
+			"rawModeData": "{\"doctorId\":\"joH0fZ7nbdkyIyKV8So5\",\"name\": \"moahmed\", \"email\": \"moahmed@gmail.com\", \"phone\": \"01271615995\",\"username\" :\"AhmedED\"}"
+		},
+		{
+			"id": "7a98584a-9c1a-59da-2d97-8bc702f734bb",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Appointment Service}}/validate/79FANOH9HGGsPROSQsRZ",
+			"folder": "6eda165f-4bca-96e9-c8e6-91fe763ebf61",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563868539770,
+			"name": "Validate Medical Appointment",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "80d2c642-354e-9dda-ed7f-c31f24a68ef0",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Appointment Service}}/Ovjd91VsiPVOJOZowtaT",
+			"folder": "6eda165f-4bca-96e9-c8e6-91fe763ebf61",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563758942942,
+			"name": "Medical Appointment",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "99897044-3817-dc0c-b7df-f881e95944ba",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{Basic API URL}}{{Basic Doctor Service}}",
+			"folder": "f109f5c1-dfa2-738e-d305-ec0c8d73c651",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563825100237,
+			"name": "doctor",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": [],
+			"rawModeData": "{\"name\": \"moahmed\", \"email\": \"moahmed@gmail.com\", \"phone\": \"01271615995\",\"username\" :\"AhmedED\"}"
+		},
+		{
+			"id": "b1cedfcd-2ab2-9c94-5c64-c9265c2050be",
+			"headers": "",
+			"headerData": [],
+			"url": "{{Basic API URL}}{{Basic Reservation Service}}/rfpR4IYd6e0hiCWX7wKq",
+			"folder": "289936f3-e12e-9bd5-438d-77ac1e210acf",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563832183922,
+			"name": "Reservation",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": []
+		},
+		{
+			"id": "cbb1ec27-9a38-3f78-d72d-4f529bc64cca",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{Basic API URL}}{{Basic Appointment Service}}",
+			"folder": "6eda165f-4bca-96e9-c8e6-91fe763ebf61",
+			"queryParams": [
+				{
+					"key": "",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563831091548,
+			"name": "Medical Appointment",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": [],
+			"rawModeData": "{\"doctorDto\": {\"doctorId\" : \"1DI5mXlvNecUCtXdIvFR\"}, \"day\" :\"2018-03-29\", \"from\" : \"06:34\", \"to\": \"10:34\" ,\"maxPatientCapacity\": 21}"
+		},
+		{
+			"id": "dc2694b5-145d-626d-b940-3052f0c73a3d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{Basic API URL}}{{Basic Patient service}}",
+			"folder": "21d15a35-d18c-299e-447c-5021be86170d",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1563825305063,
+			"name": "Patient",
+			"description": "",
+			"collectionId": "6fc0e561-9c59-e9a0-c2ff-95c04bf0e8e9",
+			"responses": [],
+			"rawModeData": "{\"patientId\": \"qKZHFOkhUU8MdlnzQvSy\", \"name\": \"karim.fadel\", \"email\": \"karim.fadel@gmail.com\", \"phone\": \"01271615995\",\"username\" :\"karim.fadel\"}"
+		}
+	]
+}
