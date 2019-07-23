@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ${application.name:patient-service}
+      
+server:  
+  port: ${port:9093}

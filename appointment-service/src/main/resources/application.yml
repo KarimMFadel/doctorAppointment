@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ${application.name:appointment-service}
+      
+server:  
+  port: ${port:9091}

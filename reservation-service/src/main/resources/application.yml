@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ${application.name:reservation-service}
+      
+server:  
+  port: ${port:9094}
