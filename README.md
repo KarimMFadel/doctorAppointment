@@ -1,6 +1,7 @@
 # doctorAppointment
 
-#Run application 
+
+**Run application 
 
     1. maven update
     2. maven clean install
@@ -15,20 +16,20 @@
         d - reservation-service
     5. By using postman App - Import postman files for testing serices
 
-######Technology:-
+**Technology:-
 
     1- spring boot
     2- Spring Cloud
     3- firebase NoSql DB
     4- Rest Service
 
-######Future work:
+**Future work:
 
     1- messaging (Using AMQP)
     2- Docker
     3- Endpoints Authentication JWT
 
-######DB Structure Relation:-
+**DB Structure Relation:-
 
     1 - Doctor 
     2 - Patient
@@ -38,7 +39,7 @@
         this table contain all reservation of patient at the specific doctor MedicalAppointment and its' timing
         
         
-######why Using Firebase:-
+**why Using Firebase:-
 
 Firebase is a simple and user-friendly mobile and web application development platform developed by Google
 Supports the NoSQL cloud database which provides a mechanism for the storage and retrieval of data
