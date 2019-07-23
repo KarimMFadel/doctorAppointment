@@ -15,7 +15,7 @@ Build a simple Appointment web application between doctors and patients.
         b - patient-service
         c - appointment-service
         d - reservation-service
-    5. By using postman App - Import postman files for testing serices
+    5. By using postman App - Import postman files for testing serices [exist on postman testing files folder]
 
 **Basic Services URL:-** 
     
