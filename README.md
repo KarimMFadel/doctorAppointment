@@ -39,9 +39,11 @@ Build a simple Appointment web application between doctors and patients.
 
 **Future work:-**
 
-    1- messaging (Using AMQP)
+    1- Endpoints Authentication JWT (Registration)
     2- Docker
-    3- Endpoints Authentication JWT
+    3- messaging (Using AMQP) 
+        [increase the number of currentPatientCappacity on medicalAppointment when we add new reservation]
+        [current we call rest service to make this behavior]
 
 **DB Structure Relation:-**
 
