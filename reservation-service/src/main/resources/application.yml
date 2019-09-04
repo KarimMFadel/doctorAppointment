@@ -2,5 +2,5 @@ spring:
   application:
     name: ${application.name:reservation-service}
       
-server:  
+server:   
   port: ${port:9094}
