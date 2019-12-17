@@ -28,11 +28,11 @@ import com.extremesolution.appointmentservice.service.MedicalAppointmentService;
 @WebAppConfiguration
 public class AppointmentServiceApplicationTests {
 
-	@Value("${database.config.collection.medicalAppointments.collectionName:MedicalAppointments}")
-    String collectionName;
+//	@Value("${database.config.collection.medicalAppointments.collectionName:MedicalAppointments}")
+//    String collectionName;
 	
-	@Autowired
-	private MockMvc mockMvc;
+//	@Autowired
+//	private MockMvc mockMvc;
 	
 //	@MockBean
 //	MedicalAppointmentService appointmentService;

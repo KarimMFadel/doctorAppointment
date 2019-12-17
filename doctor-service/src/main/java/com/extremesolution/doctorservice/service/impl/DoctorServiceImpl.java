@@ -1,5 +1,8 @@
 package com.extremesolution.doctorservice.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +11,7 @@ import com.extremesolution.doctorservice.model.Doctor;
 import com.extremesolution.doctorservice.repository.DoctorRepository;
 import com.extremesolution.doctorservice.service.DoctorService;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 @Service
 public class DoctorServiceImpl implements DoctorService{
@@ -44,5 +48,14 @@ public class DoctorServiceImpl implements DoctorService{
 		doctorRepository.update(id,doctor);
 	}
 
+	@Override
+	public List<Doctor> getAllDocuments() {
+		List<QueryDocumentSnapshot> documents = doctorRepository.getAllDocuments();
+		List<Doctor> doctors = new ArrayList<>();
+	    for (QueryDocumentSnapshot document : documents) {
+	    	doctors.add(document.toObject(Doctor.class));
+	      }
+		return doctors;
+	}
 
 }
