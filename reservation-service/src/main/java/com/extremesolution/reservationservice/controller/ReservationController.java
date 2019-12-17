@@ -1,5 +1,8 @@
 package com.extremesolution.reservationservice.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,6 +51,19 @@ public class ReservationController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") String id) {
 		reservationService.delete(id);
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<Object> getAll() {
+		return new ResponseEntity<Object>(convertMultiToDto(reservationService.getAllDocuments()), HttpStatus.OK);
+	}
+	
+	private List<ReservationDto> convertMultiToDto(List<Reservation> reservations) {
+		List<ReservationDto> reservationDtos = new ArrayList<>();
+		for (Reservation reservation : reservations) {
+			reservationDtos.add(convertToDto(reservation,null));
+		}
+		return reservationDtos;
 	}
 
 	private ReservationDto convertToDto(Reservation reservation, String id) {

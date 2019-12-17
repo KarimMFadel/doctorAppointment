@@ -1,5 +1,8 @@
 package com.extremesolution.reservationservice.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +12,7 @@ import com.extremesolution.reservationservice.restClient.RestTemplateClient;
 import com.extremesolution.reservationservice.service.ReservationService;
 import com.extremesolution.commonservice.general.util.exception.BusinessException;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -62,6 +66,14 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationRepository.delete(id);
 	}
 	
-
+	@Override
+	public List<Reservation> getAllDocuments() {
+		List<QueryDocumentSnapshot> documents = reservationRepository.getAllDocuments();
+		List<Reservation> reservations = new ArrayList<>();
+	    for (QueryDocumentSnapshot document : documents) {
+	    	reservations.add(document.toObject(Reservation.class));
+	      }
+		return reservations;
+	}
 
 }

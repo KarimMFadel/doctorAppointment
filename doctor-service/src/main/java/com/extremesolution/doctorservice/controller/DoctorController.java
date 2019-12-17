@@ -1,5 +1,8 @@
 package com.extremesolution.doctorservice.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +44,19 @@ public class DoctorController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") String id) {
 		doctorService.delete(id);
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<Object> getAll() {
+		return new ResponseEntity<Object>(convertMultiToDto(doctorService.getAllDocuments()), HttpStatus.OK);
+	}
+	
+	private List<DoctorDto> convertMultiToDto(List<Doctor> doctors) {
+		List<DoctorDto> doctorDtos = new ArrayList<>();
+		for (Doctor patient : doctors) {
+			doctorDtos.add(convertToDto(patient,null));
+		}
+		return doctorDtos;
 	}
 	
 	private DoctorDto convertToDto(Doctor doctor, String id) {

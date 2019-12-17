@@ -1,5 +1,7 @@
 package com.extremesolution.appointmentservice.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.extremesolution.appointmentservice.restClient.RestTemplateClient;
 import com.extremesolution.appointmentservice.service.MedicalAppointmentService;
 import com.extremesolution.commonservice.general.util.exception.BusinessException;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 @Service
 public class MedicalAppointmentServiceImpl implements MedicalAppointmentService {
@@ -90,6 +93,16 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 			return false;
 		}
 		return (medicalAppointment.getCurrentPatientCapacity() < medicalAppointment.getMaxPatientCapacity())? true : false;
+	}
+
+	@Override
+	public List<MedicalAppointment> getAllDocuments() {
+		List<QueryDocumentSnapshot> documents = medicalAppointmentRepository.getAllDocuments();
+		List<MedicalAppointment> medicalAppointments = new ArrayList<>();
+	    for (QueryDocumentSnapshot document : documents) {
+	    	medicalAppointments.add(document.toObject(MedicalAppointment.class));
+	      }
+		return null;
 	}
 
 }
