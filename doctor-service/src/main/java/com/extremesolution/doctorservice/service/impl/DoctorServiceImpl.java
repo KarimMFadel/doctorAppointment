@@ -1,7 +1,8 @@
 package com.extremesolution.doctorservice.service.impl;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,12 +50,10 @@ public class DoctorServiceImpl implements DoctorService{
 	}
 
 	@Override
-	public List<Doctor> getAllDocuments() {
-		List<QueryDocumentSnapshot> documents = doctorRepository.getAllDocuments();
-		List<Doctor> doctors = new ArrayList<>();
-	    for (QueryDocumentSnapshot document : documents) {
-	    	doctors.add(document.toObject(Doctor.class));
-	      }
+	public Map<String,Doctor> getAllUnretireDocuments() {
+		List<QueryDocumentSnapshot> documents = doctorRepository.getAllUnretireDocuments();
+		Map<String,Doctor> doctors = new HashMap<>();
+	    documents.forEach(document->doctors.put(document.getId(),document.toObject(Doctor.class)));
 		return doctors;
 	}
 

@@ -1,6 +1,6 @@
 package com.extremesolution.appointmentservice.service.impl;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +56,7 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 
 		// convert document to POJO
 		MedicalAppointment medicalAppointment= documentSnapshot.toObject(MedicalAppointment.class);
-		if(medicalAppointment.getRetire())
+		if(medicalAppointment==null||medicalAppointment.getRetire())
 			throw new BusinessException("General00005",new Object[] {id});
 		return documentSnapshot.toObject(MedicalAppointment.class);
 	}
@@ -96,13 +96,11 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 	}
 
 	@Override
-	public List<MedicalAppointment> getAllDocuments() {
-		List<QueryDocumentSnapshot> documents = medicalAppointmentRepository.getAllDocuments();
-		List<MedicalAppointment> medicalAppointments = new ArrayList<>();
-	    for (QueryDocumentSnapshot document : documents) {
-	    	medicalAppointments.add(document.toObject(MedicalAppointment.class));
-	      }
-		return null;
+	public Map<String,MedicalAppointment> getAllUnretireDocuments() {
+		List<QueryDocumentSnapshot> documents = medicalAppointmentRepository.getAllUnretireDocuments();
+		Map<String,MedicalAppointment> medicalAppointments = new HashMap<>();
+	    documents.forEach(document->medicalAppointments.put(document.getId(),document.toObject(MedicalAppointment.class)));
+		return medicalAppointments;
 	}
 
 }

@@ -85,14 +85,12 @@ public class MedicalAppointmentController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<Object> getAll() {
-		return new ResponseEntity<Object>(convertMultiToDto(medicalAppointmentService.getAllDocuments()), HttpStatus.OK);
+		return new ResponseEntity<Object>(convertMultiToDto(medicalAppointmentService.getAllUnretireDocuments()), HttpStatus.OK);
 	}
 	
-	private List<MedicalAppointmentDto> convertMultiToDto(List<MedicalAppointment> medicalAppointments) {
+	private List<MedicalAppointmentDto> convertMultiToDto(Map<String,MedicalAppointment> appointments) {
 		List<MedicalAppointmentDto> appointmentDtos = new ArrayList<>();
-		for (MedicalAppointment medicalAppointment : medicalAppointments) {
-			appointmentDtos.add(convertToDto(medicalAppointment,null));
-		}
+		appointments.forEach((k,v)-> appointmentDtos.add(convertToDto(v,k)));
 		return appointmentDtos;
 	}
 

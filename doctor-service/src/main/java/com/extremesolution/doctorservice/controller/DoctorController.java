@@ -2,6 +2,7 @@ package com.extremesolution.doctorservice.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,14 +49,12 @@ public class DoctorController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<Object> getAll() {
-		return new ResponseEntity<Object>(convertMultiToDto(doctorService.getAllDocuments()), HttpStatus.OK);
+		return new ResponseEntity<Object>(convertMultiToDto(doctorService.getAllUnretireDocuments()), HttpStatus.OK);
 	}
 	
-	private List<DoctorDto> convertMultiToDto(List<Doctor> doctors) {
+	private List<DoctorDto> convertMultiToDto(Map<String,Doctor> doctors) {
 		List<DoctorDto> doctorDtos = new ArrayList<>();
-		for (Doctor patient : doctors) {
-			doctorDtos.add(convertToDto(patient,null));
-		}
+		doctors.forEach((k,v)-> doctorDtos.add(convertToDto(v,k)));
 		return doctorDtos;
 	}
 	

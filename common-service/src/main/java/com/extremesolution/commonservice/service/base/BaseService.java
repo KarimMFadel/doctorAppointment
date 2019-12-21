@@ -1,6 +1,6 @@
 package com.extremesolution.commonservice.service.base;
 
-import java.util.List;
+import java.util.Map;
 
 public interface BaseService<T> {
 	
@@ -8,5 +8,5 @@ public interface BaseService<T> {
 	public void update(String id, T object);
 	public T get(String id);
 	public void delete(String id);
-	public List<T> getAllDocuments();
+	public Map<String,T> getAllUnretireDocuments();
 }

@@ -59,9 +59,9 @@ public abstract class AbstractRepository<T extends AbstractEntity> {
 	 *
 	 * @return list of documents
 	 */
-	public List<QueryDocumentSnapshot> getAllDocuments() {
+	public List<QueryDocumentSnapshot> getAllUnretireDocuments() {
 		// asynchronously retrieve all documents
-		ApiFuture<QuerySnapshot> future = collectionReference.get();
+		ApiFuture<QuerySnapshot> future = collectionReference.whereEqualTo("retire", false).get();
 		// future.get() blocks on response
 		List<QueryDocumentSnapshot> documents;
 		try {
@@ -69,9 +69,6 @@ public abstract class AbstractRepository<T extends AbstractEntity> {
 		} catch (InterruptedException | ExecutionException e) {
 			throw new BusinessException("General00007");
 		}
-//		for (QueryDocumentSnapshot document : documents) {
-//			System.out.println(document.getId() + " => " + document.toObject(City.class));
-//		}
 		// [END fs_get_all_docs]
 		return documents;
 	}

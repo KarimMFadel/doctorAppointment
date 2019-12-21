@@ -14,7 +14,7 @@ public interface MedicalAppointmentRepository {
 	public void update(String id, MedicalAppointment object);
 	public DocumentSnapshot get(String id);
 	public Boolean delete(String id);
-	public List<QueryDocumentSnapshot> getAllDocuments();
+	public List<QueryDocumentSnapshot> getAllUnretireDocuments();
 	public Map<String,MedicalAppointment> getAllAvailableMedicalAppointmentOfDoctor(String doctor_id);
 	
 }

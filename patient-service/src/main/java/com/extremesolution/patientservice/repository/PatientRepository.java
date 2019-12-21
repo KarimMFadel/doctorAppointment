@@ -13,7 +13,7 @@ public interface PatientRepository {
 	public void update(String id, Patient object);
 	public DocumentSnapshot get(String id);
 	public Boolean delete(String id);
-	public List<QueryDocumentSnapshot> getAllDocuments();
+	public List<QueryDocumentSnapshot> getAllUnretireDocuments();
 	
 //	public DocumentSnapshot getAll();
 }

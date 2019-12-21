@@ -13,7 +13,7 @@ public interface ReservationRepository {
 	public void update(String id, Reservation object);
 	public DocumentSnapshot get(String id);
 	public Boolean delete(String id);
-	public List<QueryDocumentSnapshot> getAllDocuments();
+	public List<QueryDocumentSnapshot> getAllUnretireDocuments();
 	
 //	public DocumentSnapshot getAll();
 }

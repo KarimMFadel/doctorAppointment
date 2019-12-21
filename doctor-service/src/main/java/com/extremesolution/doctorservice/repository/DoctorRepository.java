@@ -12,6 +12,6 @@ public interface DoctorRepository {
 	public void update(String id, Doctor object);
 	public DocumentSnapshot get(String id);
 	public Boolean delete(String id);
-	public List<QueryDocumentSnapshot> getAllDocuments();
+	public List<QueryDocumentSnapshot> getAllUnretireDocuments();
 
 }

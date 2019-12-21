@@ -2,6 +2,7 @@ package com.extremesolution.reservationservice.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,14 +56,12 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<Object> getAll() {
-		return new ResponseEntity<Object>(convertMultiToDto(reservationService.getAllDocuments()), HttpStatus.OK);
+		return new ResponseEntity<Object>(convertMultiToDto(reservationService.getAllUnretireDocuments()), HttpStatus.OK);
 	}
 	
-	private List<ReservationDto> convertMultiToDto(List<Reservation> reservations) {
+	private List<ReservationDto> convertMultiToDto(Map<String,Reservation> reservations) {
 		List<ReservationDto> reservationDtos = new ArrayList<>();
-		for (Reservation reservation : reservations) {
-			reservationDtos.add(convertToDto(reservation,null));
-		}
+		reservations.forEach((k,v)-> reservationDtos.add(convertToDto(v,k)));
 		return reservationDtos;
 	}
 

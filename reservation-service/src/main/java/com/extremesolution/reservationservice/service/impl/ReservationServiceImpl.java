@@ -1,7 +1,8 @@
 package com.extremesolution.reservationservice.service.impl;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,12 +68,10 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	@Override
-	public List<Reservation> getAllDocuments() {
-		List<QueryDocumentSnapshot> documents = reservationRepository.getAllDocuments();
-		List<Reservation> reservations = new ArrayList<>();
-	    for (QueryDocumentSnapshot document : documents) {
-	    	reservations.add(document.toObject(Reservation.class));
-	      }
+	public Map<String,Reservation> getAllUnretireDocuments() {
+		List<QueryDocumentSnapshot> documents = reservationRepository.getAllUnretireDocuments();
+		Map<String,Reservation> reservations = new HashMap<>();
+	    documents.forEach(document->reservations.put(document.getId(),document.toObject(Reservation.class)));
 		return reservations;
 	}
 
