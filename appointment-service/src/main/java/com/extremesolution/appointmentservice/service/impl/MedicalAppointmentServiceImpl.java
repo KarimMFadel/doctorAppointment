@@ -1,5 +1,7 @@
 package com.extremesolution.appointmentservice.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.extremesolution.appointmentservice.restClient.RestTemplateClient;
 import com.extremesolution.appointmentservice.service.MedicalAppointmentService;
 import com.extremesolution.commonservice.general.util.exception.BusinessException;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 @Service
 public class MedicalAppointmentServiceImpl implements MedicalAppointmentService {
@@ -53,7 +56,7 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 
 		// convert document to POJO
 		MedicalAppointment medicalAppointment= documentSnapshot.toObject(MedicalAppointment.class);
-		if(medicalAppointment.getRetire())
+		if(medicalAppointment==null||medicalAppointment.getRetire())
 			throw new BusinessException("General00005",new Object[] {id});
 		return documentSnapshot.toObject(MedicalAppointment.class);
 	}
@@ -90,6 +93,14 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 			return false;
 		}
 		return (medicalAppointment.getCurrentPatientCapacity() < medicalAppointment.getMaxPatientCapacity())? true : false;
+	}
+
+	@Override
+	public Map<String,MedicalAppointment> getAllUnretireDocuments() {
+		List<QueryDocumentSnapshot> documents = medicalAppointmentRepository.getAllUnretireDocuments();
+		Map<String,MedicalAppointment> medicalAppointments = new HashMap<>();
+	    documents.forEach(document->medicalAppointments.put(document.getId(),document.toObject(MedicalAppointment.class)));
+		return medicalAppointments;
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.extremesolution.reservationservice.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +13,7 @@ import com.extremesolution.reservationservice.restClient.RestTemplateClient;
 import com.extremesolution.reservationservice.service.ReservationService;
 import com.extremesolution.commonservice.general.util.exception.BusinessException;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -62,6 +67,12 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationRepository.delete(id);
 	}
 	
-
+	@Override
+	public Map<String,Reservation> getAllUnretireDocuments() {
+		List<QueryDocumentSnapshot> documents = reservationRepository.getAllUnretireDocuments();
+		Map<String,Reservation> reservations = new HashMap<>();
+	    documents.forEach(document->reservations.put(document.getId(),document.toObject(Reservation.class)));
+		return reservations;
+	}
 
 }

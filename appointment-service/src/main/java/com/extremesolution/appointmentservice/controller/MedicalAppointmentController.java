@@ -82,6 +82,17 @@ public class MedicalAppointmentController {
 	public Boolean validate(@PathVariable("id") String id) {
 		return medicalAppointmentService.validateMaxCapacity(id);
 	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<Object> getAll() {
+		return new ResponseEntity<Object>(convertMultiToDto(medicalAppointmentService.getAllUnretireDocuments()), HttpStatus.OK);
+	}
+	
+	private List<MedicalAppointmentDto> convertMultiToDto(Map<String,MedicalAppointment> appointments) {
+		List<MedicalAppointmentDto> appointmentDtos = new ArrayList<>();
+		appointments.forEach((k,v)-> appointmentDtos.add(convertToDto(v,k)));
+		return appointmentDtos;
+	}
 
 	private MedicalAppointmentDto convertToDto(MedicalAppointment medicalAppointment, String id) {
 		MedicalAppointmentDto medicalAppointmentDto = modelMapper.map(medicalAppointment, MedicalAppointmentDto.class);
