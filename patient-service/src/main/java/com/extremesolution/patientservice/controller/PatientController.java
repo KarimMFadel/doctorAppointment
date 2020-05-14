@@ -20,6 +20,7 @@ import com.extremesolution.patientservice.model.Patient;
 import com.extremesolution.patientservice.service.PatientService;
 
 @RestController
+@RequestMapping("/patient")
 public class PatientController {
 
 	private static final ModelMapper modelMapper = new ModelMapper();

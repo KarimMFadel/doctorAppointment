@@ -1,6 +1,18 @@
 spring:
   application:
     name: ${application.name:doctor-service}
-      
+  data:
+    mongodb:
+      port: 27017
+      database: doctor
+      host: localhost
+  
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: health,info,mappings,auditevents,env
+                   
 server:  
   port: ${port:9092}

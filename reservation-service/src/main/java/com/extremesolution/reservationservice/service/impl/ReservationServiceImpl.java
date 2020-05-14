@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.extremesolution.reservationservice.model.Reservation;
 import com.extremesolution.reservationservice.repository.ReservationRepository;
-import com.extremesolution.reservationservice.restClient.RestTemplateClient;
+import com.extremesolution.reservationservice.restClient.MedicalAppointmentClient;
+import com.extremesolution.reservationservice.restClient.PatientClient;
 import com.extremesolution.reservationservice.service.ReservationService;
 import com.extremesolution.commonservice.general.util.exception.BusinessException;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -22,56 +21,62 @@ public class ReservationServiceImpl implements ReservationService {
 	ReservationRepository reservationRepository;
 	
 	@Autowired
-	RestTemplateClient restTemplateClient;
+	PatientClient patientClient;
+	
+	@Autowired
+	MedicalAppointmentClient medicalAppointmentClient;
 
 	@Override
 	public String save(Reservation reservation) {
 		
 		validateReservation(reservation);
 		
-		reservation.setRetire(false);
-		String reservation_id = reservationRepository.save(reservation);
+		// TODO we need to check if the same patient reserve on the same appointment.
 		
-		restTemplateClient.registerPatientOnMedicalAppointment(reservation.getMedicalAppointmentId());
-		return reservation_id;
+		reservation.setRetire(false);
+		Reservation newReservation = reservationRepository.save(reservation);
+		
+		medicalAppointmentClient.registerPatientOnMedicalAppointment(reservation.getMedicalAppointmentId());
+		return newReservation.getId();
 	}
 
 	private void validateReservation(Reservation reservation) {
-		if (!restTemplateClient.validateMedicalAppointment(reservation.getMedicalAppointmentId()))
+		if (!medicalAppointmentClient.validate(reservation.getMedicalAppointmentId()))
 			throw new BusinessException("General00006", new Object[] { reservation.getMedicalAppointmentId() });
-		if (restTemplateClient.getPatient(reservation.getPatientId()) == null)
+		if (patientClient.get(reservation.getPatientId()) == null)
 				throw new BusinessException("General00006", new Object[] { reservation.getMedicalAppointmentId() });
 	}
 
 	@Override
-	public void update(String id, Reservation reservation) {
-		this.get(id);
+	public void update(String id, Reservation newReservation) {
+		Reservation reservation = this.get(id);
 		reservation.setRetire(false);
-		reservationRepository.update(id, reservation);
+//		reservation.setMedicalAppointmentId(newReservation.getMedicalAppointmentId());
+//		reservation.setPatientId(newReservation.getPatientId());
+		reservationRepository.save(reservation);
 	}
 
 	@Override
 	public Reservation get(String id) {
-		DocumentSnapshot documentSnapshot = reservationRepository.get(id);
+		Reservation reservation = reservationRepository.findById(id).orElse(null);
 
-		// convert document to POJO
-		if (documentSnapshot.toObject(Reservation.class).getRetire())
+		if (reservation.getRetire())
 			throw new BusinessException("General00005", new Object[] { id });
-		return documentSnapshot.toObject(Reservation.class);
+		return reservation;
 	}
 
 	@Override
 	public void delete(String id) {
 		Reservation reservation = this.get(id);
 		reservation.setRetire(true);
-		reservationRepository.delete(id);
+		reservationRepository.deleteById(id);
 	}
 	
 	@Override
 	public Map<String,Reservation> getAllUnretireDocuments() {
-		List<QueryDocumentSnapshot> documents = reservationRepository.getAllUnretireDocuments();
+		List<Reservation> ReturnedReservations = reservationRepository.findByRetireFalse();
 		Map<String,Reservation> reservations = new HashMap<>();
-	    documents.forEach(document->reservations.put(document.getId(),document.toObject(Reservation.class)));
+		ReturnedReservations.forEach(document->reservations.put(document.getId(),document));
 		return reservations;
 	}
 

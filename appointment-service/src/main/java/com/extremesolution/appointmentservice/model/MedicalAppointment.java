@@ -2,8 +2,11 @@ package com.extremesolution.appointmentservice.model;
 
 import java.io.Serializable;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import com.extremesolution.commonservice.model.base.AbstractEntity;
 
+@Document(collection = "MedicalAppointment")
 public class MedicalAppointment extends AbstractEntity implements Serializable{
 
 	/**

@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.extremesolution.commonservice.dto.ReservationDto;
 import com.extremesolution.reservationservice.model.Reservation;
-import com.extremesolution.reservationservice.restClient.RestTemplateClient;
+import com.extremesolution.reservationservice.restClient.MedicalAppointmentClient;
+import com.extremesolution.reservationservice.restClient.PatientClient;
 import com.extremesolution.reservationservice.service.ReservationService;
 
 @RestController
@@ -29,10 +30,10 @@ public class ReservationController {
 	ReservationService reservationService;
 
 	@Autowired
-	RestTemplateClient restTemplateClient;
-
-//	@Autowired
-//	PatientClient patientClient;
+	PatientClient patientClient;
+	
+	@Autowired
+	MedicalAppointmentClient medicalAppointmentClient;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(@RequestBody(required = true) ReservationDto reservationDto) {
@@ -68,9 +69,9 @@ public class ReservationController {
 	private ReservationDto convertToDto(Reservation reservation, String id) {
 		ReservationDto reservationDto = modelMapper.map(reservation, ReservationDto.class);
 		reservationDto.setReservationId(id);
-		reservationDto.setPatientDto(restTemplateClient.getPatient(reservation.getPatientId()));
+		reservationDto.setPatientDto(patientClient.get(reservation.getPatientId()));
 		reservationDto.setMedicalAppointmentDto(
-				restTemplateClient.getMedicalAppointment(reservation.getMedicalAppointmentId()));
+				medicalAppointmentClient.get(reservation.getMedicalAppointmentId()));
 		return reservationDto;
 	}
 

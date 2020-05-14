@@ -1,6 +1,31 @@
 spring:
   application:
     name: ${application.name:patient-service}
+  data:
+    mongodb:
+      port: 27017
+      database: patients
+      host: localhost
+      
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: health,info,mappings,auditevents,env,conditions,loggers,loggers-name,caches,server-info,metrics,httptrace,integrationgraph,sessions,shutdown,threaddump,scheduletasks,flyway,configprops
+  endpoint:
+    auditevents:
+      enabled:   true
+
+info:
+  team: 
+    name: Learning
+    developer:  Karim Fadel
+    project:  Spring cloud
+  version:  v0.0.1
+  project:
+    owner:  Karim Fadel
+       
       
 server:  
   port: ${port:9093}

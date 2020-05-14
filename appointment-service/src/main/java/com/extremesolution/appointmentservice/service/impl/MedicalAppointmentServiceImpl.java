@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.extremesolution.appointmentservice.model.MedicalAppointment;
 import com.extremesolution.appointmentservice.repository.MedicalAppointmentRepository;
-import com.extremesolution.appointmentservice.restClient.RestTemplateClient;
+import com.extremesolution.appointmentservice.restClient.DoctorClient;
 import com.extremesolution.appointmentservice.service.MedicalAppointmentService;
+import com.extremesolution.commonservice.dto.DoctorDto;
 import com.extremesolution.commonservice.general.util.exception.BusinessException;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 @Service
 public class MedicalAppointmentServiceImpl implements MedicalAppointmentService {
@@ -22,7 +21,7 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 	MedicalAppointmentRepository medicalAppointmentRepository;
 
 	@Autowired
-	RestTemplateClient restTemplateClient;
+	DoctorClient doctorClient;
 	
 	@Override
 	public String save(MedicalAppointment medicalAppointment) {
@@ -30,12 +29,12 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 		medicalAppointment.setRetire(false);
 		// there is no any patient register yet on this MedicalAppointment
 		medicalAppointment.setCurrentPatientCapacity(0);
-		return medicalAppointmentRepository.save(medicalAppointment);
+		return medicalAppointmentRepository.save(medicalAppointment).getId();
 	}
 
 	private void validateMedicalAppointment(MedicalAppointment medicalAppointment) {
-
-		if(restTemplateClient.getDoctor(medicalAppointment.getDoctorId()) == null)
+		DoctorDto doctorDto= doctorClient.get(medicalAppointment.getDoctorId());
+		if( doctorDto == null)
 			throw new BusinessException("General00005",new Object[] {medicalAppointment.getDoctorId()});
 		
 	}
@@ -47,30 +46,34 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 			object.setRetire(false);
 		if(object.getCurrentPatientCapacity() == null)
 			object.setCurrentPatientCapacity(oldobject.getCurrentPatientCapacity());
-		medicalAppointmentRepository.update(id, object);
+		medicalAppointmentRepository.save(object);
 	}
 
 	@Override
 	public MedicalAppointment get(String id) {
-		DocumentSnapshot documentSnapshot = medicalAppointmentRepository.get(id);
+		MedicalAppointment medicalAppointment = medicalAppointmentRepository.findById(id).orElse(null);
 
-		// convert document to POJO
-		MedicalAppointment medicalAppointment= documentSnapshot.toObject(MedicalAppointment.class);
 		if(medicalAppointment==null||medicalAppointment.getRetire())
 			throw new BusinessException("General00005",new Object[] {id});
-		return documentSnapshot.toObject(MedicalAppointment.class);
+		return medicalAppointment;
 	}
 
 	@Override
 	public void delete(String id) {
 		MedicalAppointment medicalAppointment= this.get(id);
 		medicalAppointment.setRetire(true);
-		medicalAppointmentRepository.update(id,medicalAppointment);
+		medicalAppointmentRepository.save(medicalAppointment);
 	}
 
 	@Override
 	public Map<String,MedicalAppointment> getAllAvailableMedicalAppointmentOfDoctor(String doctor_id) {
-		return medicalAppointmentRepository.getAllAvailableMedicalAppointmentOfDoctor(doctor_id);
+		Map<String,MedicalAppointment> medicalAppointments = new HashMap<>();
+		List<MedicalAppointment> appointments = medicalAppointmentRepository.findByRetireFalse();
+		appointments.forEach(obj->{
+			if (obj.getCurrentPatientCapacity() < obj.getMaxPatientCapacity())
+				medicalAppointments.put(obj.getId(),obj);
+		});
+		return medicalAppointments;
 		
 	}
 	
@@ -81,7 +84,7 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 
 		MedicalAppointment medicalAppointment= this.get(medicalAppointment_id);
 		medicalAppointment.setCurrentPatientCapacity(medicalAppointment.getCurrentPatientCapacity()+1);
-		medicalAppointmentRepository.update(medicalAppointment_id, medicalAppointment);
+		medicalAppointmentRepository.save(medicalAppointment);
 	}
 
 	@Override
@@ -97,9 +100,9 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
 
 	@Override
 	public Map<String,MedicalAppointment> getAllUnretireDocuments() {
-		List<QueryDocumentSnapshot> documents = medicalAppointmentRepository.getAllUnretireDocuments();
+		List<MedicalAppointment> documents = medicalAppointmentRepository.findByRetireFalse();
 		Map<String,MedicalAppointment> medicalAppointments = new HashMap<>();
-	    documents.forEach(document->medicalAppointments.put(document.getId(),document.toObject(MedicalAppointment.class)));
+	    documents.forEach(document->medicalAppointments.put(document.getId(),document));
 		return medicalAppointments;
 	}
 

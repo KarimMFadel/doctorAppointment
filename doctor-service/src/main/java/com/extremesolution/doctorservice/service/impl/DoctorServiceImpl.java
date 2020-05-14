@@ -11,8 +11,6 @@ import com.extremesolution.commonservice.general.util.exception.BusinessExceptio
 import com.extremesolution.doctorservice.model.Doctor;
 import com.extremesolution.doctorservice.repository.DoctorRepository;
 import com.extremesolution.doctorservice.service.DoctorService;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 @Service
 public class DoctorServiceImpl implements DoctorService{
@@ -22,38 +20,38 @@ public class DoctorServiceImpl implements DoctorService{
 	@Override
 	public String save(Doctor medicalAppointment) {
 		medicalAppointment.setRetire(false);
-		return doctorRepository.save(medicalAppointment);
+		return doctorRepository.save(medicalAppointment).getId();
 	}
 
 	@Override
 	public void update(String id,Doctor  object) {
 		this.get(id);
 		object.setRetire(false);
-		doctorRepository.update(id, object);
+		doctorRepository.save(object);
 	}
 
 	@Override
 	public Doctor get(String id) {
-		DocumentSnapshot documentSnapshot = doctorRepository.get(id);
+		Doctor doctor = doctorRepository.findById(id).orElse(null);
 
 		// convert document to POJO
-		if(documentSnapshot.toObject(Doctor.class).getRetire())
+		if(doctor == null || doctor.getRetire())
 			throw new BusinessException("General00005",new Object[] {id}); 
-		return documentSnapshot.toObject(Doctor.class);
+		return doctor;
 	}
 
 	@Override
 	public void delete(String id) {
 		Doctor doctor = this.get(id);
 		doctor.setRetire(true);
-		doctorRepository.update(id,doctor);
+		doctorRepository.save(doctor);
 	}
 
 	@Override
 	public Map<String,Doctor> getAllUnretireDocuments() {
-		List<QueryDocumentSnapshot> documents = doctorRepository.getAllUnretireDocuments();
+		List<Doctor> documents = doctorRepository.findByRetireFalse();
 		Map<String,Doctor> doctors = new HashMap<>();
-	    documents.forEach(document->doctors.put(document.getId(),document.toObject(Doctor.class)));
+	    documents.forEach(document->doctors.put(document.getId(),document));
 		return doctors;
 	}
 

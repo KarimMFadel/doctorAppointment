@@ -1,6 +1,12 @@
 spring:
   application:
     name: ${application.name:reservation-service}
+  data:
+    mongodb:
+      port: 27017
+      database: reservastion
+      host: localhost
       
 server:   
   port: ${port:9094}
+  

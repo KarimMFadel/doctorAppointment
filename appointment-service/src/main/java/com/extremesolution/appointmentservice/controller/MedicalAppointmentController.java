@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.extremesolution.appointmentservice.model.MedicalAppointment;
-import com.extremesolution.appointmentservice.restClient.RestTemplateClient;
+import com.extremesolution.appointmentservice.restClient.DoctorClient;
 import com.extremesolution.appointmentservice.service.MedicalAppointmentService;
 import com.extremesolution.commonservice.dto.MedicalAppointmentDto;
 
@@ -32,7 +32,7 @@ public class MedicalAppointmentController {
 	MedicalAppointmentService medicalAppointmentService;
 
 	@Autowired
-	RestTemplateClient restTemplateClient;
+	DoctorClient doctorClient;
 
 	DateTimeFormatter formatterDay = DateTimeFormatter.ofPattern("d-MMM-yyyy");
 	DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
@@ -102,7 +102,7 @@ public class MedicalAppointmentController {
 		medicalAppointmentDto.setFrom(LocalTime.parse(medicalAppointment.getFrom(), formatterTime));
 		medicalAppointmentDto.setTo(LocalTime.parse(medicalAppointment.getTo(), formatterTime));
 
-		medicalAppointmentDto.setDoctorDto(restTemplateClient.getDoctor(medicalAppointment.getDoctorId()));
+		medicalAppointmentDto.setDoctorDto(doctorClient.get(medicalAppointment.getDoctorId()));
 
 		return medicalAppointmentDto;
 	}

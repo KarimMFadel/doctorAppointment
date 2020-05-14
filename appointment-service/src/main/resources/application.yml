@@ -1,6 +1,10 @@
 spring:
   application:
     name: ${application.name:appointment-service}
-      
+  data:
+    mongodb:
+      port: 27017
+      database: appointment
+      host: localhost   
 server:  
   port: ${port:9091}
