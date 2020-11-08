@@ -34,7 +34,7 @@ Build a simple Appointment web application between doctors and patients.
 
     1- spring boot
     2- Spring Cloud
-    3- firebase NoSql DB
+    3- MongoDB NoSql DB
     4- Rest Service
 
 **Future work:-**
