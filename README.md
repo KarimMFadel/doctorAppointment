@@ -54,14 +54,3 @@ Build a simple Appointment web application between doctors and patients.
     4 - Reservation [PatientId, MedicalAppointmentId]
         this table contain all reservation of patient at the specific doctor MedicalAppointment and its' timing
         
-        
-**why Using Firebase:-**
-
-Firebase is a simple and user-friendly mobile and web application development platform developed by Google
-Supports the NoSQL cloud database which provides a mechanism for the storage and retrieval of data
-It offers,
-    [x] Real-time synchronization of data meaning every change is automatically updated to the connected clients
-    [x] Scalability across multiple databases
-    [x] Different authentication techniques such as anonymous, password, or social
-    [x] Application deployment on the firebase servers
-    [x] Storing the documents in the json format
