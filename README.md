@@ -6,7 +6,7 @@ Build a simple Appointment web application between doctors and patients.
 
     1. maven update
     2. maven clean install
-    3. run this miroservice 
+    3. run these miroservice 
         a - eureka-service 
         b - zuul-service 
         c - config-service]
